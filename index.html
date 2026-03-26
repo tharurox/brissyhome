@@ -4,61 +4,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brissy Home</title>
-
-    <!-- Bootstrap CSS -->
-    <!-- Your custom CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-   <nav>
-    <div>
-        <a href="index.html">Brissy Home</a>
-    </div>
+<body class="bg-light">
 
-    <div>
-        <a href="index.html">Home</a>
-        <a href="listings.html">Listed Properties</a>
-        <a href="bookmarks.html">Saved Properties</a>
-    </div>
-
-    <div>
-        <input type="text" placeholder="Search suburb or postcode">
-        <button>Search</button>
-    </div>
-</nav>
-    <!-- Hero/banner section -->
-    <!-- Search section -->
-    <!-- Filter/category section -->
-    <!-- Featured rental properties -->
-       <section>
-    <h2>Featured Rentals</h2>
-
-    <div>
+    <nav class="p-3 bg-white border-bottom">
         <div>
-            <img src="img/property1.jpg" alt="Property 1">
-            <h3>Property Title</h3>
-            <p>$___ per week</p>
-            <p>__ bed | __ bath | __ car</p>
-            <a href="property_details.html">View Details</a>
+            <a href="index.html" class="text-decoration-none text-dark">
+                <h1 class="display-5">Brissy Home</h1>
+            </a>
+        </div>
+
+        <div class="mb-3">
+            <a href="index.html" class="btn btn-outline-dark btn-sm me-2">Home</a>
+            <a href="listings.html" class="btn btn-outline-dark btn-sm me-2">Listed Properties</a>
+            <a href="bookmarks.html" class="btn btn-outline-dark btn-sm">Saved Properties</a>
         </div>
 
         <div>
-            <img src="img/property2.jpg" alt="Property 2">
-            <h3>Property Title</h3>
-            <p>$___ per week</p>
-            <p>__ bed | __ bath | __ car</p>
-            <a href="property_details.html">View Details</a>
+            <input type="text" class="form-control d-inline w-auto" placeholder="Search suburb or postcode">
+            <button class="btn btn-primary btn-sm ms-2">Search</button>
         </div>
+    </nav>
 
-        <div>
-            <img src="img/property3.jpg" alt="Property 3">
-            <h3>Property Title</h3>
-            <p>$___ per week</p>
-            <p>__ bed | __ bath | __ car</p>
-            <a href="property_details.html">View Details</a>
+    <section class="p-5 text-center bg-white">
+        <h2 class="display-6">Find Your Perfect Rental Home in Brisbane</h2>
+        <p class="lead">
+            Welcome to <strong>Brissy Home</strong>, your trusted platform for finding comfortable,
+            affordable, and modern rental properties across Brisbane.
+        </p>
+        <a href="listings.html" class="btn btn-primary me-2">Browse Properties</a>
+        <a href="bookmarks.html" class="btn btn-outline-secondary">View Saved Homes</a>
+    </section>
+
+    <section class="p-4 bg-light">
+        <h2 class="mb-3">Why Choose Brissy Home?</h2>
+        <p>
+            Brissy Home helps renters easily explore available houses, apartments, and family homes.
+            You can search for properties, view detailed information, and save your favourite homes
+            for later.
+        </p>
+    </section>
+
+    <section class="p-4 bg-white">
+        <h2 class="mb-4">Featured Rentals</h2>
+
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <img src="img/property1.jpg" alt="Property 1" class="img-fluid rounded mb-3">
+                <h3>Modern Family House</h3>
+                <p>$620 per week</p>
+                <p>4 bed | 2 bath | 2 car</p>
+                <a href="property_details.html" class="btn btn-primary btn-sm">View Details</a>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <img src="img/property2.jpg" alt="Property 2" class="img-fluid rounded mb-3">
+                <h3>City Apartment</h3>
+                <p>$480 per week</p>
+                <p>2 bed | 1 bath | 1 car</p>
+                <a href="property_details.html" class="btn btn-primary btn-sm">View Details</a>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <img src="img/property3.jpg" alt="Property 3" class="img-fluid rounded mb-3">
+                <h3>Comfortable Suburban Home</h3>
+                <p>$550 per week</p>
+                <p>3 bed | 2 bath | 1 car</p>
+                <a href="property_details.html" class="btn btn-primary btn-sm">View Details</a>
+            </div>
         </div>
-    </div>
-</section>
-    <!-- Footer -->
+    </section>
+
+    <footer class="p-3 text-center bg-dark text-white">
+        <p class="mb-0">&copy; 2026 Brissy Home. All rights reserved.</p>
+    </footer>
 
 </body>
 </html>
