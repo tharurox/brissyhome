@@ -1,31 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
+  <link rel="stylesheet" href="css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brissy Home - Listings</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="bg-light">
 
-    <nav class="p-3 bg-white border-bottom">
-        <div>
-            <a href="index.html" class="text-decoration-none text-dark">
-                <h1 class="display-5">Brissy Home</h1>
-            </a>
-        </div>
+    <nav class="p-3 bg-white border-bottom d-flex justify-content-between align-items-center flex-wrap">
+    <div>
+        <a href="index.html" class="text-decoration-none text-dark">
+            <h1 class="display-5 mb-0">Brissy Home</h1>
+        </a>
+    </div>
 
-        <div class="mb-3">
-            <a href="index.html" class="btn btn-outline-dark btn-sm me-2">Home</a>
-            <a href="listings.html" class="btn btn-outline-dark btn-sm me-2">Listed Properties</a>
-            <a href="bookmarks.html" class="btn btn-outline-dark btn-sm">Saved Properties</a>
-        </div>
+    <div class="mb-0">
+        <a href="index.html" class="btn btn-outline-dark btn-sm me-2">Home</a>
+        <a href="listings.html" class="btn btn-outline-dark btn-sm me-2">Listed Properties</a>
+        <a href="bookmarks.html" class="btn btn-outline-dark btn-sm">Saved Properties</a>
+    </div>
 
-        <div>
-            <input type="text" class="form-control d-inline w-auto" placeholder="Search suburb or postcode">
-            <button class="btn btn-primary btn-sm ms-2">Search</button>
-        </div>
-    </nav>
+    <div class="d-flex align-items-center gap-2">
+        <input type="text" class="form-control d-inline w-auto" placeholder="Search suburb or postcode">
+        <button class="btn btn-primary btn-sm">Search</button>
+
+        <details class="account-menu position-relative">
+            <summary class="btn btn-outline-dark btn-sm">My Account</summary>
+            <div class="account-dropdown bg-white border rounded shadow-sm">
+                <a href="myprofile.html" class="d-block px-3 py-2 text-decoration-none text-dark">My Profile</a>
+                <a href="logout.html" class="d-block px-3 py-2 text-decoration-none text-dark">Logout</a>
+            </div>
+        </details>
+    </div>
+</nav>
 
     <section class="p-5 text-center bg-white">
         <h2 class="display-6">Available Rental Properties</h2>
@@ -36,6 +43,41 @@
 
     <section class="p-4 bg-light">
         <h2 class="mb-4">Property Listings</h2>
+
+        <div class="bg-white p-3 rounded border mb-4">
+            <div class="row g-3 align-items-end">
+                <div class="col-md-4">
+                    <label for="bedrooms" class="form-label">Bedrooms</label>
+                    <select id="bedrooms" class="form-select">
+                        <option value="">Any</option>
+                        <option value="1">1 Bedroom</option>
+                        <option value="2">2 Bedrooms</option>
+                        <option value="3">3 Bedrooms</option>
+                        <option value="4">4+ Bedrooms</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="solar" class="form-label">Solar Energy</label>
+                    <select id="solar" class="form-select">
+                        <option value="">Any</option>
+                        <option value="yes">Solar Available</option>
+                        <option value="no">No Solar</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="price" class="form-label">Price Range</label>
+                    <select id="price" class="form-select">
+                        <option value="">Any</option>
+                        <option value="0-450">Under $450 / week</option>
+                        <option value="451-550">$451 - $550 / week</option>
+                        <option value="551-650">$551 - $650 / week</option>
+                        <option value="651+">$651+ / week</option>
+                    </select>
+                </div>
+            </div>
+        </div>
 
         <div class="row">
             <div class="col-md-4 mb-4">
@@ -88,9 +130,9 @@
         </div>
     </section>
 
-    <footer class="p-3 text-center bg-dark text-white">
-        <p class="mb-0">&copy; 2026 Brissy Home. All rights reserved.</p>
-    </footer>
+<footer class="site-footer">
+    <center><font color ='black'>2026 Brissy Home. All rights reserved.</font></center>
+</footer>
 
 </body>
 </html>

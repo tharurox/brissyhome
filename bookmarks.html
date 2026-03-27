@@ -1,51 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saved Properties | Brissy Home</title>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Saved Properties - Brissy Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
 
-    <nav>
-        <div>
-            <a href="index.html">Brissy Home</a>
-        </div>
+<body class="bg-light">
+    <nav class="p-3 bg-white border-bottom d-flex justify-content-between align-items-center flex-wrap">
+    <div>
+        <a href="index.html" class="text-decoration-none text-dark">
+            <h1 class="display-5 mb-0">Brissy Home</h1>
+        </a>
+    </div>
 
-        <div>
-            <a href="index.html">Home</a>
-            <a href="listings.html">Listed Properties</a>
-            <a href="bookmarks.html">Saved Properties</a>
-        </div>
+    <div class="mb-0">
+        <a href="index.html" class="btn btn-outline-dark btn-sm me-2">Home</a>
+        <a href="listings.html" class="btn btn-outline-dark btn-sm me-2">Listed Properties</a>
+        <a href="bookmarks.html" class="btn btn-outline-dark btn-sm">Saved Properties</a>
+    </div>
 
-        <div>
-            <input type="text" placeholder="Search suburb or postcode">
-            <button>Search</button>
-        </div>
-    </nav>
+    <div class="d-flex align-items-center gap-2">
+        <input type="text" class="form-control d-inline w-auto" placeholder="Search suburb or postcode">
+        <button class="btn btn-primary btn-sm">Search</button>
 
-    <hr>
+        <details class="account-menu position-relative">
+            <summary class="btn btn-outline-dark btn-sm">My Account</summary>
+            <div class="account-dropdown bg-white border rounded shadow-sm">
+                <a href="myprofile.html" class="d-block px-3 py-2 text-decoration-none text-dark">My Profile</a>
+                <a href="logout.html" class="d-block px-3 py-2 text-decoration-none text-dark">Logout</a>
+            </div>
+        </details>
+    </div>
+</nav>
 
-    <section>
-        <h1>Saved Properties</h1>
-        <p>Here are your bookmarked properties.</p>
-
-        <div>
-            <a href="property_details.html">
-                <img src="img/property1.jpg" alt="Property 1" width="400">
-                <h2>Modern Family House in Brisbane</h2>
-            </a>
-            <p><strong>Price:</strong> $620 per week</p>
-            <p><strong>Features:</strong> 4 bed | 2 bath | 2 car</p>
-            <p>Click the property image or title to view full details.</p>
-        </div>
+    <section class="p-5 text-center bg-white">
+        <h2 class="display-6">Saved Properties</h2>
+        <p class="lead">Here is your bookmarked Eco Friendly rental homes.</p>
     </section>
 
-    <hr>
+    <section class="p-4 bg-light">
+        <h2 class="mb-4">Your Bookmarked Homes</h2>
 
-    <footer>
-        <p>&copy; 2026 Brissy Home. All rights reserved.</p>
-    </footer>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <a href="property_details.html" class="text-decoration-none text-dark">
+                    <img src="img/property1.jpg" alt="Property 1" class="img-fluid rounded mb-3">
+                    <h3>Modern Family House With Solar Panels in Woolongabba</h3>
+                </a>
+                <p><strong>Price:</strong> $620 per week</p>
+                <p><strong>Features:</strong> 4 bed | 2 bath | 2 car</p>
+                <p>Click the property image or title to view full details.</p>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <a href="property_details.html" class="text-decoration-none text-dark">
+                    <img src="img/property2.jpg" alt="Property 2" class="img-fluid rounded mb-3">
+                    <h3>City Apartment with Eco Friendly Design in Mt.Gravattt</h3>
+                </a>
+                <p><strong>Price:</strong> $480 per week</p>
+                <p><strong>Features:</strong> 2 bed | 1 bath | 1 car</p>
+                <p>Click the property image or title to view full details.</p>
+            </div>
+            </div>
+    </section>
+
+<footer class="site-footer">
+    <center><font color ='black'>2026 Brissy Home. All rights reserved.</font></center>
+</footer>
 
 </body>
 </html>
