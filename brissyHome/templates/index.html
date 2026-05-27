@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <section class="p-5 text-center bg-white">
+        <h2 class="display-6">Find Your Perfect Rental Home in Brisbane</h2>
+        <p class="lead">
+         Welcome to <strong>Brissy Home</strong> your trusted platform for finding comfortable affordable and modern eco firendly rental properties across Brisbane.
+
+        </p>
+        <a href="listings.html" class="btn btn-primary me-2">Browse Properties</a>
+        <a href="bookmarks.html" class="btn btn-outline-secondary">View Saved Homes</a>
+    </section>
+
+    <section class="p-4 bg-light">
+        <h2 class="mb-3">Why Choose Brissy Home?</h2>
+        <p>
+     Brissy Home help people in Brisbane to explore available eco friendly houses,apartments and family homes.
+            You can search for properties\view detailed information and save your favourite homes
+            for later. We priorotize Eco firently green houses which will ensure sustainable green energy for a better future. 
+
+        </p>
+    </section>
+
+    <section class="p-4 bg-white">
+        <h2 class="mb-4">Featured Rentals</h2>
+
+        <div class="row">
+        {% for property in properties %}
+    <div class="col-md-4 mb-4">
+    <img src="{{ url_for('static', filename='img/' + property.image_filename) }}" class="img-fluid rounded mb-3">
+    <h3>{{ property.title }}</h3>
+    <p>${{ property.rent_per_week }} per week</p>
+    <p>{{ property.bedrooms }} bed | {{ property.bathrooms }} bath | {{ property.car_spaces }} car</p>
+    <a href="{{ url_for('main.property_details', property_id=property.property_id) }}" class="btn btn-primary btn-sm">
+        View Details
+    </a>
+</div>
+{% endfor %}
+            </div>
+    </section>
+{% endblock %}
