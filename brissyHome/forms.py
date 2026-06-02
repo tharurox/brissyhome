@@ -66,26 +66,6 @@ class BookmarkForm(FlaskForm):
     submit = SubmitField("Save Property")
 
 
-class EnquiryForm(FlaskForm):
-    message = TextAreaField(
-        "Message",
-        validators=[InputRequired(), Length(min=10, max=1000)]
-    )
-    submit = SubmitField("Send Enquiry")
-
-
-class OfferForm(FlaskForm):
-    offer_amount = DecimalField(
-        "Offer Amount",
-        validators=[InputRequired(), NumberRange(min=1)]
-    )
-    message = TextAreaField(
-        "Message",
-        validators=[Optional(), Length(max=1000)]
-    )
-    submit = SubmitField("Submit Offer")
-
-
 class PropertyForm(FlaskForm):
     title = StringField(
         "Title",
@@ -107,11 +87,6 @@ class PropertyForm(FlaskForm):
         "Postcode",
         validators=[InputRequired(), Length(min=4, max=4)]
     )
-    category_id = SelectField(
-        "Category",
-        coerce=int,
-        validators=[InputRequired()]
-    )
     property_type = SelectField(
         "Property Type",
         choices=[
@@ -128,10 +103,6 @@ class PropertyForm(FlaskForm):
         "Rent Per Week",
         validators=[InputRequired(), NumberRange(min=1)]
     )
-    bond_amount = DecimalField(
-        "Bond Amount",
-        validators=[InputRequired(), NumberRange(min=0)]
-    )
     bedrooms = IntegerField(
         "Bedrooms",
         validators=[InputRequired(), NumberRange(min=0, max=20)]
@@ -140,22 +111,8 @@ class PropertyForm(FlaskForm):
         "Bathrooms",
         validators=[InputRequired(), NumberRange(min=0, max=20)]
     )
-    car_spaces = IntegerField(
-        "Car Spaces",
-        validators=[InputRequired(), NumberRange(min=0, max=20)]
-    )
     solar_available = BooleanField("Solar Available")
     pet_friendly = BooleanField("Pet Friendly")
-    availability_status = SelectField(
-        "Availability Status",
-        choices=[
-            ("Available", "Available"),
-            ("Pending", "Pending"),
-            ("Leased", "Leased"),
-            ("Unavailable", "Unavailable"),
-        ],
-        validators=[InputRequired()]
-    )
     image_file = FileField(
         "Property Image",
         validators=[

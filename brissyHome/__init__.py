@@ -20,7 +20,6 @@ def create_app():
 
     mysql.init_app(app)
 
-    # IMPORTANT: import views only after mysql is created and app is configured
     from .views import bp
     app.register_blueprint(bp)
 
@@ -41,5 +40,14 @@ def create_app():
             error_title="Server Error",
             error_message="Something went wrong on the server.",
         ), 500
+    
+    @app.errorhandler(403)
+    def forbidden(error):
+        return render_template(
+        "error.html",
+        error_code=403,
+        error_title="Access Denied",
+        error_message="You do not have permission to access this page.",
+    ), 403
 
     return app

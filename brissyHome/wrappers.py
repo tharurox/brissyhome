@@ -41,18 +41,3 @@ def seller_required(func):
 
         return func(*args, **kwargs)
     return wrapper
-
-
-def admin_required(func):
-    @wraps(func)
-    def wrapper(*args, **kwargs):
-        if "user" not in session:
-            flash("Please log in first.", "error")
-            return redirect(url_for("main.login"))
-
-        if session["user"]["role"] != "admin":
-            flash("Admin access required.", "error")
-            return redirect(url_for("main.index"))
-
-        return func(*args, **kwargs)
-    return wrapper

@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}Manage Listings - Brissy Home{% endblock %}
+{% block content %}
+
+<section class="container py-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+    <h1>Manage Property Listings</h1>
+    <p class="text-muted mb-0">
+    Sellers/agents can create, view and manage their own property listings.
+    </p>
+    </div>
+
+    <a href="{{ url_for('main.new_listing') }}" class="btn btn-primary">
+    Create New Listing
+    </a>
+    </div>
+
+    <div class="card shadow-sm">
+    <div class="card-body">
+            {% if properties %}
+                <div class="table-responsive">
+                <table class="table table-striped align-middle">
+                <thead>
+                <tr>
+                <th>Property</th>
+                <th>Suburb</th>
+                <th>Category</th>
+                <th>Rent</th>
+                <th>Status</th>
+                <th>Bedrooms</th>
+                <th>Bathrooms</th>
+                <th>Actions</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for property in properties %}
+                <tr>
+                <td>{{ property.title }}</td>
+                <td>{{ property.suburb }}</td>
+                <td>{{ property.category_name }}</td>
+                <td>${{ property.rent_per_week }} / week</td>
+                <td>{{ property.availability_status }}</td>
+                <td>{{ property.bedrooms }}</td>
+                <td>{{ property.bathrooms }}</td>
+                <td>
+                <a href="{{ url_for('main.property_details', property_id=property.property_id) }}"
+                class="btn btn-sm btn-outline-primary">View
+                </a>
+                </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+                </table>
+                </div>
+            {% else %}
+            <div class="alert alert-info">
+            No listings found for your account.
+            </div>
+        {% endif %}
+    </div>
+    </div>
+</section>
+{% endblock %}

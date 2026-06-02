@@ -1,56 +1,122 @@
 {% extends 'base.html' %}
+
 {% block title %}{{ property.title }} - Brissy Home{% endblock %}
+
 {% block content %}
 
-    <section class="p-5 bg-white">
-        <h2 class="display-6 mb-3">Modern Family House With Solar Panels in Woolongabba</h2>
-        <p><strong>Location:</strong> Brisbane, QLD 4000</p>
-        <p><strong>Price:</strong> $620 per week</p>
+<section class="container py-5 bg-white">
 
-        <div class="my-4">
-            <img src="img/property1.jpg" alt="Property 1 House Image" class="img-fluid rounded"></div>
-
-        <h3 class="mt-4">Property Overview</h3>
-        <p> Modern eco friendly family house in the heart of Brisbane. Recently built and equipped with modern facilities.
-            Close to major supermarkets and near the bus station. With Off grid Solar 30KW Panel, Saves you money for electrocity. 
-        </p>
-
-        <h3 class="mt-4">Property Features</h3>
-        <ul>
-            <li>4 Bedrooms</li>
-            <li>2 Bathrooms</li>
-            <li>2 Car Parking Spaces</li>
-            <li>15KW Off Grid Solar Powered</li>
-            <li>Large Living and Dining Area</li>
-            <li>Modern Kitchen with Storage Cabinets</li>
-            <li>Air Conditioning</li>
-            <li>Private Backyard</li>
-            <li>Close to schools shops and public transport</li>
-        </ul>
-
-        <h3 class="mt-4">Additional Information</h3>
-        <p><strong>Property Type:</strong> House</p>
-        <p><strong>Availability:</strong> Available Now</p>
-        <p><strong>Pets:</strong> Allowed on application</p>
-        <p><strong>Inspection Time:</strong> Saturday 10:00 AM - 11:00 AM</p>
-
-        <h3 class="mt-4">Book Inspection</h3>
-        <div class="mb-4">
-            <select class="form-select w-auto d-inline">
-                <option selected>Choose Date and Time</option>
-                <option>Saturday 10:00 AM</option>
-                <option>Saturday 10:30 AM</option>
-                <option>Saturday 11:00 AM</option>
-                <option>Sunday 1:00 PM</option>
-                <option>Sunday 1:30 PM</option>
-                <option>Sunday 2:00 PM</option>
-            </select>
-            <button class="btn btn-primary ms-2">Book Now</button>
+    <div class="row">
+        <div class="col-lg-7">
+            <img
+                src="{{ url_for('static', filename='img/' + property.image_filename) }}"
+                alt="{{ property.title }}"
+                class="img-fluid rounded shadow-sm mb-4"
+                style="width: 100%; max-height: 450px; object-fit: cover;">
         </div>
 
-        <div class="mt-4">
-            <button class="btn btn-primary me-2">Save Property</button>
-            <a href="listings.html" class="btn btn-outline-secondary">Back to Listings</a>
-             </div>
-    </section>
+        <div class="col-lg-5">
+            <h1 class="display-6 mb-3">{{ property.title }}</h1>
+            <p>
+                <strong>Location:</strong>
+                {{ property.address }}, {{ property.suburb }} {{ property.postcode }}
+            </p>
+            <p>
+                <strong>Price:</strong>
+                ${{ property.rent_per_week }} per week
+            </p>
+            <p>
+                <strong>Property Type:</strong>
+                {{ property.property_type }}
+            </p>
+            <p>
+                <strong>Bedrooms:</strong>
+                {{ property.bedrooms }}
+            </p>
+            <p>
+                <strong>Bathrooms:</strong>
+                {{ property.bathrooms }}
+            </p>
+            <p></p>
+                <strong>Solar Available:</strong>
+                {% if property.solar_available %}
+                    Yes
+                {% else %}
+                    No
+                {% endif %}
+            </p>
+
+            <p>
+                <strong>Pet Friendly:</strong>
+                {% if property.pet_friendly %}
+                    Yes
+                {% else %}
+                    No
+                {% endif %}
+            </p>
+
+            {% if property.seller_name %}
+                <p>
+                    <strong>Agent:</strong>
+                    {{ property.seller_name }}
+                </p>
+            {% endif %}
+        </div>
+    </div>
+
+    <hr class="my-4">
+
+    <h3>Property Overview</h3>
+    <p>{{ property.description }}</p>
+
+    <h3 class="mt-4">Property Features</h3>
+    <ul>
+        <li>{{ property.bedrooms }} Bedrooms</li>
+        <li>{{ property.bathrooms }} Bathrooms</li>
+
+        {% if property.solar_available %}
+            <li>Solar Available</li>
+        {% endif %}
+
+        {% if property.pet_friendly %}
+            <li>Pet Friendly</li>
+        {% endif %}
+
+        <li>Located in {{ property.suburb }}</li>
+        <li>Postcode {{ property.postcode }}</li>
+    </ul>
+
+    <h3 class="mt-4">Book Inspection</h3>
+    <div class="mb-4">
+        <select class="form-select w-auto d-inline">
+            <option selected>Choose Date and Time</option>
+            <option>Saturday 10:00 AM</option>
+            <option>Saturday 10:30 AM</option>
+            <option>Saturday 11:00 AM</option>
+            <option>Sunday 1:00 PM</option>
+            <option>Sunday 1:30 PM</option>
+            <option>Sunday 2:00 PM</option>
+        </select>
+        <button class="btn btn-primary ms-2">Book Now</button>
+    </div>
+
+    <div class="mt-4">
+        {% if session.get('user') and session['user']['role'] == 'buyer' %}
+            <form method="post"
+                  action="{{ url_for('main.save_property', property_id=property.property_id) }}"
+                  class="d-inline">
+                {{ bookmark_form.hidden_tag() }}
+                <button type="submit" class="btn btn-primary me-2">
+                    Save Property
+                </button>
+            </form>
+        {% endif %}
+
+        <a href="{{ url_for('main.listings') }}" class="btn btn-outline-secondary">
+            Back to Listings
+        </a>
+    </div>
+
+</section>
+
 {% endblock %}

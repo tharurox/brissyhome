@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }} - Brissy Home{% endblock %}
+
+{% block content %}
+
+<section class="container py-5">
+    <h1 class="mb-4">{{ title }}</h1>
+
+    <form method="post" enctype="multipart/form-data" class="card p-4 shadow-sm">
+        {{ form.hidden_tag() }}
+
+        <div class="row g-3">
+
+            <div class="col-md-6">
+                {{ form.title.label(class="form-label") }}
+                {{ form.title(class="form-control") }}
+                {% for error in form.title.errors %}
+                <div class="text-danger small">{{ error }}</div>
+                {% endfor %}
+            </div>
+            <div class="col-12">
+                {{ form.description.label(class="form-label") }}
+                {{ form.description(class="form-control", rows="4") }}
+                {% for error in form.description.errors %}
+                <div class="text-danger small">{{ error }}</div>
+                {% endfor %}
+            </div>
+
+            <div class="col-md-8">
+                {{ form.address.label(class="form-label") }}
+                {{ form.address(class="form-control") }}
+                {% for error in form.address.errors %}
+                <div class="text-danger small">{{ error }}</div>
+                {% endfor %}
+            </div>
+
+            <div class="col-md-2">
+                {{ form.suburb.label(class="form-label") }}
+                {{ form.suburb(class="form-control") }}
+                {% for error in form.suburb.errors %}
+                <div class="text-danger small">{{ error }}</div>
+                {% endfor %}
+            </div>
+
+            <div class="col-md-2">
+                {{ form.postcode.label(class="form-label") }}
+                {{ form.postcode(class="form-control") }}
+                {% for error in form.postcode.errors %}
+                <div class="text-danger small">{{ error }}</div>
+                {% endfor %}
+            </div>
+
+            <div class="col-md-4">
+                {{ form.property_type.label(class="form-label") }}
+                {{ form.property_type(class="form-select") }}
+                {% for error in form.property_type.errors %}
+                <div class="text-danger small">{{ error }}</div>
+                {% endfor %}
+            </div>
+
+            <div class="col-md-4">
+                {{ form.rent_per_week.label(class="form-label") }}
+                {{ form.rent_per_week(class="form-control") }}
+                {% for error in form.rent_per_week.errors %}
+                <div class="text-danger small">{{ error }}</div>
+                {% endfor %}
+            </div>
+            <div class="col-md-4">
+                {{ form.bedrooms.label(class="form-label") }}
+                {{ form.bedrooms(class="form-control") }}
+                {% for error in form.bedrooms.errors %}
+                <div class="text-danger small">{{ error }}</div>
+                {% endfor %}
+            </div>
+
+            <div class="col-md-4">
+                {{ form.bathrooms.label(class="form-label") }}
+                {{ form.bathrooms(class="form-control") }}
+                {% for error in form.bathrooms.errors %}
+                <div class="text-danger small">{{ error }}</div>
+                {% endfor %}
+            </div>
+            <div class="col-md-4">
+                {{ form.image_file.label(class="form-label") }}
+                {{ form.image_file(class="form-control") }}
+                {% for error in form.image_file.errors %}
+                <div class="text-danger small">{{ error }}</div>
+                {% endfor %}
+            </div>
+            <div class="col-md-2 d-flex align-items-center">
+                <div class="form-check mt-4">
+                {{ form.solar_available(class="form-check-input") }}
+                {{ form.solar_available.label(class="form-check-label") }}
+                </div>
+            </div>
+            <div class="col-md-2 d-flex align-items-center">
+                <div class="form-check mt-4">
+                {{ form.pet_friendly(class="form-check-input") }}
+                {{ form.pet_friendly.label(class="form-check-label") }}
+            </div>
+            </div>
+        </div>
+        <div class="mt-4">
+            {{ form.submit(class="btn btn-primary") }}
+            <a href="{{ url_for('main.manage_listings') }}" class="btn btn-outline-secondary">
+                Cancel
+            </a>
+        </div>
+    </form>
+</section>
+{% endblock %}
