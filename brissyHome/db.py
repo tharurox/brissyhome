@@ -265,16 +265,6 @@ def add_user(username, email, password_hash, first_name, last_name, phone, role)
         (username, email, password_hash, first_name, last_name, phone, role),
     )
 
-
-def delete_user(user_id):
-    return _execute(
-        """
-        DELETE FROM users 
-        WHERE user_id = %s AND role <> 'admin'
-        """,
-        (user_id,),
-    )
-
 def is_bookmarked(user_id, property_id):
     row = _fetchone(
         """

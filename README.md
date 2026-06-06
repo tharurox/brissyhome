@@ -47,9 +47,10 @@ Pending Items:
     * Enquiries (Halfway done)
     * Offers  
 
+Github Repo : https://github.com/tharurox/brissyhome
 
     Developed by : 
-    TharakaRavishan Ranathunga
+    Tharaka Ravishan Ranathunga
     N11849622 
     QUT - IFN 582 - Assignment 3 
 
