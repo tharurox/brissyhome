@@ -16,10 +16,12 @@ User can login with the registered credetials.
 There may be no homes available when the database is created as it's empty.  So I have adde few SQL queries to populate the db when it's getting created by taking a dump from the mysql workbench of the existing db. 
 
 Dummy Users: 
+
     * Login as Agent: agent1 / Password : qwerty@123
     * Login as User: user1 / Password: qwerty@123
 
 If the account is a buyer account :  
+
     *The buyer can view the listed properties, bookmark them to view them later.
 
     *The buyer can search the properties matching thier price, solar availability, bedrooms. 
@@ -28,6 +30,7 @@ If the account is a buyer account :
 
 
 If the account is a seller account :
+
     *The seller can post a listing in the website by uploading picture, adding the details of the property. 
 
     *The seller can manage the listed properties like edit the details, edit the photo and remove the listing from the website.
