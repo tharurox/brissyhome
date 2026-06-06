@@ -26,7 +26,7 @@
                 <tr>
                 <th>Property</th>
                 <th>Suburb</th>
-                <th>Category</th>
+                <th>Property Type</th>
                 <th>Rent</th>
                 <th>Status</th>
                 <th>Bedrooms</th>
@@ -40,16 +40,31 @@
                 <tr>
                 <td>{{ property.title }}</td>
                 <td>{{ property.suburb }}</td>
-                <td>{{ property.category_name }}</td>
+                <td>{{ property.property_type }}</td>
                 <td>${{ property.rent_per_week }} / week</td>
                 <td>{{ property.availability_status }}</td>
                 <td>{{ property.bedrooms }}</td>
                 <td>{{ property.bathrooms }}</td>
-                <td>
-                <a href="{{ url_for('main.property_details', property_id=property.property_id) }}"
-                class="btn btn-sm btn-outline-primary">View
-                </a>
-                </td>
+             <td>
+    <a href="{{ url_for('main.property_details', property_id=property.property_id) }}"
+       class="btn btn-sm btn-outline-primary">
+        View
+    </a>
+
+    <a href="{{ url_for('main.edit_listing', property_id=property.property_id) }}"
+       class="btn btn-sm btn-outline-warning">
+        Edit
+    </a>
+
+    <form method="post"
+          action="{{ url_for('main.delete_listing', property_id=property.property_id) }}"
+          class="d-inline"
+          onsubmit="return confirm('Are you sure you want to delete this listing?');">
+        <button type="submit" class="btn btn-sm btn-outline-danger">
+            Delete
+        </button>
+    </form>
+</td>
                 </tr>
                 {% endfor %}
                 </tbody>

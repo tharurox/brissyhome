@@ -325,3 +325,48 @@ def get_saved_properties(user_id):
         """,
         (user_id,),
     )
+
+def update_property(property_id, data, image_filename):
+    return _execute(
+        """
+        UPDATE properties SET
+            title = %s,
+            description = %s,
+            address = %s,
+            suburb = %s,
+            postcode = %s,
+            property_type = %s,
+            rent_per_week = %s,
+            bedrooms = %s,
+            bathrooms = %s,
+            solar_available = %s,
+            pet_friendly = %s,
+            image_filename = %s
+        WHERE property_id = %s
+        """,
+        (
+            data["title"],
+            data["description"],
+            data["address"],
+            data["suburb"],
+            data["postcode"],
+            data["property_type"],
+            data["rent_per_week"],
+            data["bedrooms"],
+            data["bathrooms"],
+            data["solar_available"],
+            data["pet_friendly"],
+            image_filename,
+            property_id,
+        ),
+    )
+
+def delete_property(property_id):
+    _execute(
+        "DELETE FROM bookmarks WHERE property_id = %s",
+        (property_id,),
+    )
+    return _execute(
+        "DELETE FROM properties WHERE property_id = %s",
+        (property_id,),
+    )

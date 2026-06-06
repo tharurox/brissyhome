@@ -39,7 +39,7 @@ def listings():
         filters=filters
     )
 
-@bp.route('/property/<int:property_id>/')
+@bp.route('/property/<property_id>/')
 def property_details(property_id):
     property_row = db.get_property(property_id)
 
@@ -112,7 +112,7 @@ def saved_properties():
     saved = db.get_saved_properties(session['user']['user_id'])
     return render_template('saved_properties.html', saved=saved)
 
-@bp.post('/property/<int:property_id>/bookmark/')
+@bp.post('/property/<property_id>/bookmark/')
 @buyer_required
 def save_property(property_id):
     form = BookmarkForm()
@@ -130,6 +130,10 @@ def logout():
     session.clear()
     flash("You have been logged out.", "success")
     return redirect(url_for("main.index"))
+
+@bp.route("/offers/")
+def offers():
+    return render_template('offers_page.html')
 
 @bp.route("/manage/listings/")
 @seller_required
@@ -181,9 +185,75 @@ def new_listing():
     return render_template('listing_form.html', form=form, title='Create New Listing')
 
 
-@bp.post("/saved/<int:property_id>/remove/")
+@bp.post("/saved/<property_id>/remove/")
 @buyer_required
 def remove_saved_property(property_id):
     db.remove_bookmark(session["user"]["user_id"], property_id)
     flash("Property removed from saved properties.", "success")
     return redirect(url_for("main.saved_properties"))
+
+
+@bp.route("/manage/listings/<property_id>/edit/", methods=["GET", "POST"])
+@seller_required
+def edit_listing(property_id):
+    property_row = db.get_property(property_id)
+
+    if not property_row:
+        return render_template(
+            "error.html",
+            error_code=404,
+            error_title="Property Not Found",
+            error_message="The requested property could not be found."
+        ), 404
+
+    if not db.can_manage_property(session["user"], property_id):
+        flash("You are not allowed to edit this property.", "error")
+        return redirect(url_for("main.manage_listings"))
+
+    form = PropertyForm()
+
+    if request.method == "GET":
+        form.title.data = property_row["title"]
+        form.description.data = property_row["description"]
+        form.address.data = property_row["address"]
+        form.suburb.data = property_row["suburb"]
+        form.postcode.data = property_row["postcode"]
+        form.property_type.data = property_row["property_type"]
+        form.rent_per_week.data = property_row["rent_per_week"]
+        form.bedrooms.data = property_row["bedrooms"]
+        form.bathrooms.data = property_row["bathrooms"]
+        form.solar_available.data = property_row["solar_available"]
+        form.pet_friendly.data = property_row["pet_friendly"]
+
+        if hasattr(form, "availability_status") and "availability_status" in property_row:
+            form.availability_status.data = property_row["availability_status"]
+
+    if form.validate_on_submit():
+        image_filename = property_row["image_filename"]
+
+        uploaded_image = _save_uploaded_image(form.image_file.data)
+
+        if uploaded_image:
+            image_filename = uploaded_image
+
+        db.update_property(
+            property_id,
+            _property_form_data(form),
+            image_filename
+        )
+
+        flash("Listing updated successfully.", "success")
+        return redirect(url_for("main.manage_listings"))
+
+    return render_template(
+        "listing_form.html",
+        form=form,
+        title="Edit Listing"
+    )
+
+@bp.post("/manage/listings/<property_id>/delete/")
+@seller_required
+def delete_listing(property_id):
+    db.delete_property(property_id)
+    flash("Listing deleted successfully.", "success")
+    return redirect(url_for("main.manage_listings"))

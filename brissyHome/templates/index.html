@@ -25,16 +25,19 @@
         <h2 class="mb-4">Featured Rentals</h2>
 
         <div class="row">
-        {% for property in properties %}
+
+{% for property in properties %}
     <div class="col-md-4 mb-4">
     <img src="{{ url_for('static', filename='img/' + property.image_filename) }}" class="img-fluid rounded mb-3">
     <h3>{{ property.title }}</h3>
+
     <p>${{ property.rent_per_week }} per week</p>
+
     <p>{{ property.bedrooms }} bed | {{ property.bathrooms }} bath | {{ property.car_spaces }} car</p>
     <a href="{{ url_for('main.property_details', property_id=property.property_id) }}" class="btn btn-primary btn-sm">
-        View Details
-    </a>
+        View Details</a>
 </div>
+
 {% endfor %}
             </div>
     </section>

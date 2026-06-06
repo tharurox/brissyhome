@@ -5,7 +5,7 @@
 <section class="p-5 text-center bg-white">
     <h2 class="display-6">Available Rental Properties</h2>
     <p class="lead">
-        Explore a range of rental homes in Brisbane and choose the one that suits your lifestyle and budget.
+    Explore a range of rental homes in Brisbane and choose the one that suits your lifestyle and budget.
     </p>
 </section>
 
@@ -13,10 +13,10 @@
     <h2 class="mb-4">Property Listings</h2>
 
     <form method="GET" action="{{ url_for('main.listings') }}" class="bg-white p-3 rounded border mb-4 shadow-sm">
-        <div class="row g-3 align-items-end">
+    <div class="row g-3 align-items-end">
 
-            <div class="col-md-3">
-                <label for="search" class="form-label">Search Suburb or Postcode</label>
+    <div class="col-md-3">
+    <label for="search" class="form-label">Search Suburb or Postcode</label>
                 <input
                     type="text"
                     id="search"
@@ -47,16 +47,16 @@
             </div>
 
             <div class="col-md-2">
-                <label for="property_type" class="form-label">Property Type</label>
-                <select id="property_type" name="property_type" class="form-select">
-                <option value="">Any</option>
-                {% for type in property_types %}
-                <option value="{{ type.property_type }}"
-                {% if filters.property_type == type.property_type %}selected{% endif %}>
-                {{ type.property_type }}
-                </option>
-                {% endfor %}
-                </select>
+            <label for="property_type" class="form-label">Property Type</label>
+            <select id="property_type" name="property_type" class="form-select">
+            <option value="">Any</option>
+            {% for type in property_types %}
+            <option value="{{ type.property_type }}"
+            {% if filters.property_type == type.property_type %}selected{% endif %}>
+            {{ type.property_type }}
+            </option>
+            {% endfor %}
+            </select>
             </div>
 
             <div class="col-md-1">

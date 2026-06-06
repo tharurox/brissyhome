@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="p-5 text-center">
+    <h1>{{ error_code }}</h1>
+    <h2>Currently No Offers available at the moment.</h2>
+    <p>{{ error_message }}</p>
+    <a href="{{ url_for('main.index') }}" class="btn btn-primary">Back to Home</a>
+</section>
+{% endblock %}
